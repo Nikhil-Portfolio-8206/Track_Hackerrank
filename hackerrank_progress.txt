@@ -1,0 +1,38 @@
+Fetching HackerRank progress for Nikhil...
+Date: Thu Jan 30 07:38:25 UTC 2025
+HackerRank Profile: https://www.hackerrank.com/profile/Nikhil_8206
+---------------------------
+{
+  "model": {
+    "id": 6949171,
+    "username": "Nikhil_8206",
+    "country": "India",
+    "school": null,
+    "languages": null,
+    "created_at": "2019-09-05T19:40:42.000Z",
+    "level": 1,
+    "deleted": false,
+    "is_admin": false,
+    "support_admin": false,
+    "avatar": "https://d1ce3iv5vajdy.cloudfront.net/hackerrank/assets/gravatar.jpg",
+    "website": "",
+    "short_bio": null,
+    "username_change_count": 1,
+    "name": "NIKHIL ",
+    "personal_first_name": "NIKHIL",
+    "personal_last_name": "",
+    "company": null,
+    "local_language": null,
+    "has_avatar_url": false,
+    "hide_account_checklist": null,
+    "spam_user": null,
+    "job_title": "",
+    "jobs_headline": null,
+    "linkedin_url": null,
+    "github_url": null,
+    "resume": null,
+    "rank": null,
+    "language": null
+  },
+  "status": true
+}
