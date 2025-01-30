@@ -3,27 +3,38 @@ name: Update HackerRank Progress
 on:
   schedule:
     - cron: "0 0 * * *"  # Runs every day at midnight UTC
-  workflow_dispatch:  # Allows manual triggering
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allows manual trigger
+
+permissions:
+  contents: write  # ✅ Fix for commit/push permission
 
 jobs:
   update-progress:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Fetch HackerRank Profile Progress
-        run: |
-          echo "Fetching HackerRank Progress..." > hackerrank_progress.txt
-          curl -s "https://www.hackerrank.com/rest/hackers/Nikhil_8206/scores" | jq '.' >> hackerrank_progress.txt
-
-      - name: Commit Changes
+      - name: Set up Git
         run: |
           git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch HackerRank Progress
+        run: |
+          echo "Fetching HackerRank progress for Nikhil..." > hackerrank_progress.txt
+          echo "Date: $(date)" >> hackerrank_progress.txt
+          echo "HackerRank Profile: https://www.hackerrank.com/profile/Nikhil_8206" >> hackerrank_progress.txt
+          echo "---------------------------" >> hackerrank_progress.txt
+          curl -s "https://www.hackerrank.com/rest/hackers/Nikhil_8206" | jq '.' >> hackerrank_progress.txt || echo "Failed to fetch data" >> hackerrank_progress.txt
+
+      - name: Commit and Push Changes
+        run: |
           git add hackerrank_progress.txt
-          git commit -m "Automated HackerRank progress update on $(date)" || echo "No changes to commit"
+          git commit -m "Automated HackerRank progress update on $(date)"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # ✅ Uses GitHub Token for authentication
